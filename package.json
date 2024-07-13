@@ -1,7 +1,10 @@
 {
   "name": "pennsieve-app",
+  "author": "Jarl Haggerty",
   "version": "2.0.0",
   "private": true,
+  "main": "main.js",
+  "electronVersion": "31.2.0",
   "scripts": {
     "dev": "vite",
     "test": "vitest",
@@ -12,7 +15,9 @@
     "site-config-dev": "cp ./src/site-config/dev.json ./src/site-config/site.json",
     "site-config-prod": "cp ./src/site-config/prod.json ./src/site-config/site.json",
     "build-dev": "npm run site-config-dev && npm run build",
-    "build-production": "npm run site-config-prod && npm run build"
+    "build-production": "npm run site-config-prod && npm run build",
+    "build/electron": "npm run build && cp main.js dist && cp package.json dist && npx @electron/packager dist",
+    "package/electron": "cp main.js dist && cp package.json dist && npx @electron/packager dist"
   },
   "dependencies": {
     "@aws-sdk/client-cognito-identity": "^3.499.0",
@@ -68,12 +73,14 @@
   },
   "devDependencies": {
     "@aws-amplify/auth": "^5.1.5",
+    "@electron/packager": "^18.3.3",
     "@rushstack/eslint-patch": "^1.1.4",
     "@testing-library/vue": "^8.0.1",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/test-utils": "^2.4.3",
     "@vue/vue3-jest": "^28.1.0",
+    "electron": "^31.2.0",
     "eslint": "^8.22.0",
     "eslint-plugin-vue": "^9.3.0",
     "happy-dom": "^12.10.3",

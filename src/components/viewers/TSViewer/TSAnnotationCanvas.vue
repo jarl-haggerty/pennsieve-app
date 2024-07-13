@@ -408,6 +408,7 @@
                 }
             },
             _getAnnResponse(e) {
+                const profileId = this.$store.getters.profile.id;
                 // const userMap = R.pathOr([], ['users'], e);
                 const linkedPackages = propOr({}, 'linkedPackages', e)
                 let resp = pathOr([], ['annotations', 'results'], e)
@@ -436,6 +437,10 @@
                     const annotations = []
                     for (let i = 0; i < resp.length; i++) {
                         const curAnn = resp[i];
+                        if(curAnn.userId !== profileId) {
+                            continue;
+                        }
+               
                         // if (this.annotations.indexOf(curAnn.id) >= 0) {
                         //     // annotation already exists
                         //     continue;
